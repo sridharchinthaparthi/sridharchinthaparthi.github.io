@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chinthaparthi Sridhar - Professional Trainer | Python • Data Science • Analytics</title>
+
+  <!-- Inter font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      /* Friendlier palette */
+      --bg-primary: #fbfdfc;
+      --bg-secondary: #f2f7f7;
+      --bg-accent: #0b1220;
+
+      --text-primary: #0b1a2b;
+      --text-secondary: #5a7184;
+
+      --accent: #0ea5a1;       /* teal */
+      --accent-dark: #0b807c;  /* darker teal */
+
+      --success: #22c55e;
+      --warning: #f59e0b;
+      --border: #e6eef0;
+
+      --gradient: linear-gradient(135deg, #06b6d4 0%, #6366f1 100%);
+      --shadow: 0 4px 10px rgba(15, 23, 42, 0.06);
+      --shadow-lg: 0 18px 45px rgba(15, 23, 42, 0.12);
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+
+    /* Navigation */
+    nav {
+      position: sticky; top: 0; z-index: 1000;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+    .nav-content {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 16px 24px; max-width: 1280px; margin: 0 auto;
+    }
+    .logo {
+      font-size: 22px; font-weight: 800;
+      background: var(--gradient); -webkit-background-clip: text; background-clip: text; color: transparent;
+      letter-spacing: 0.4px;
+    }
+    .nav-links { display: flex; gap: 28px; align-items: center; }
+    .nav-links a {
+      color: var(--text-primary); text-decoration: none; font-weight: 600; font-size: 15px;
+      padding: 8px 10px; border-radius: 10px; transition: all 0.25s ease;
+    }
+    .nav-links a:hover { color: var(--accent); background: #ecf9f8; }
+    .menu-toggle { display: none; background: none; border: none; font-size: 28px; cursor: pointer; color: var(--text-primary); }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-weight: 700; font-size: 15px; padding: 12px 18px; border-radius: 12px;
+      border: 2px solid transparent; text-decoration: none; transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+    }
+    .btn:active { transform: translateY(1px); }
+    .btn-primary {
+      background: var(--gradient); color: white; box-shadow: 0 10px 20px rgba(99, 102, 241, 0.25);
+    }
+    .btn-primary:hover { box-shadow: var(--shadow-lg); }
+    .btn-outline {
+      background: transparent; color: var(--accent); border-color: #bbe8e6;
+    }
+    .btn-outline:hover {
+      background: #e8fffd; border-color: var(--accent);
+    }
+
+    /* Hero */
+    .hero {
+      background: radial-gradient(1000px 600px at -10% -10%, rgba(6, 182, 212, 0.15), rgba(255,255,255,0)) ,
+                  radial-gradient(900px 700px at 110% 10%, rgba(99, 102, 241, 0.12), rgba(255,255,255,0)),
+                  var(--bg-primary);
+      padding: 10px 0 20px; position: relative; overflow: hidden;
+    }
+    .hero .container { position: relative; z-index: 1; }
+    .hero-grid {
+      display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 48px; align-items: center;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(14, 165, 161, 0.08); color: var(--accent);
+      border: 1px solid #c2f3f0; padding: 10px 16px; border-radius: 999px; font-size: 14px; font-weight: 700; margin-bottom: 18px;
+    }
+    .hero h1 { font-size: 56px; font-weight: 800; line-height: 1.08; margin-bottom: 16px; letter-spacing: -0.5px; }
+    .hero .subtitle { font-size: 20px; margin-bottom: 14px; font-weight: 700; color: var(--accent-dark); }
+    .hero .tagline { font-size: 18px; color: var(--text-secondary); margin-bottom: 26px; max-width: 620px; line-height: 1.7; }
+
+    .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 26px; }
+
+    .hero-stats {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px;
+      margin-top: 32px; padding-top: 28px; border-top: 1px dashed #cfe7e6;
+    }
+    .stat-item { text-align: center; background: white; border: 1px solid var(--border); border-radius: 16px; padding: 18px 10px; box-shadow: var(--shadow); }
+    .stat-number { font-size: 28px; font-weight: 800; display: block; margin-bottom: 6px; color: #0e7490; }
+    .stat-label { font-size: 13px; color: var(--text-secondary); }
+
+    .hero-media { display: flex; justify-content: center; }
+    .hero-photo-wrap {
+      position: relative; width: 380px; height: 420px;
+      border-radius: 28px; padding: 6px;
+      background: var(--gradient);
+      box-shadow: 0 30px 60px rgba(6, 182, 212, 0.25);
+    }
+    .hero-photo {
+      width: 100%; height: 100%; border-radius: 22px; overflow: hidden; background: #dff7f5; position: relative;
+    }
+    .hero-photo img {
+      width: 100%; height: 100%; object-fit: cover;
+      filter: saturate(1.02) contrast(1.02);
+    }
+    .photo-badge {
+      position: absolute; right: -10px; bottom: -12px;
+      background: white; border: 1px solid var(--border); border-radius: 14px;
+      padding: 10px 14px; box-shadow: var(--shadow-lg); font-size: 13px; font-weight: 800; color: var(--accent);
+    }
+
+    /* Sections */
+    section { padding: 30px 0; }
+    .section-header { text-align: center; margin-bottom: 50px; }
+    .section-label {
+      color: var(--accent); font-weight: 800; font-size: 13px; text-transform: uppercase; letter-spacing: 1.8px; margin-bottom: 12px;
+    }
+    .section-title { font-size: 38px; font-weight: 800; margin-bottom: 10px; }
+    .section-subtitle { font-size: 18px; color: var(--text-secondary); max-width: 760px; margin: 0 auto; }
+
+    /* About */
+    .about-content {
+      max-width: 900px; margin: 0 auto; background: white;
+      border: 1px solid var(--border); border-radius: 18px; padding: 42px; box-shadow: var(--shadow-lg);
+    }
+    .about-content h3 { font-size: 24px; color: var(--accent); margin-bottom: 16px; }
+    .about-content p { font-size: 17px; color: var(--text-secondary); line-height: 1.8; margin-bottom: 18px; }
+    .philosophy-box {
+      background: var(--bg-secondary); border-left: 4px solid var(--accent);
+      padding: 20px; border-radius: 12px; margin-top: 18px;
+    }
+    .philosophy-box h4 { font-size: 18px; margin-bottom: 10px; color: var(--text-primary); }
+
+    /* Expertise */
+    .expertise-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+    .expertise-card {
+      background: white; border: 1px solid var(--border); border-radius: 16px; padding: 32px; text-align: center; transition: 0.25s;
+      position: relative; overflow: hidden;
+    }
+    .expertise-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--gradient); transform: scaleX(0); transition: transform 0.3s;
+    }
+    .expertise-card:hover { border-color: #b6e6e4; box-shadow: var(--shadow-lg); transform: translateY(-4px); }
+    .expertise-card:hover::before { transform: scaleX(1); }
+    .expertise-icon {
+      width: 72px; height: 72px; background: var(--gradient); border-radius: 18px;
+      display: flex; align-items: center; justify-content: center; font-size: 34px; margin: 0 auto 18px; color: white;
+      box-shadow: 0 10px 30px rgba(6, 182, 212, 0.3);
+    }
+    .expertise-card h3 { font-size: 22px; margin-bottom: 10px; }
+    .expertise-card p { color: var(--text-secondary); line-height: 1.7; margin-bottom: 16px; }
+    .topics-list { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+    .topic-tag {
+      background: var(--bg-secondary); padding: 6px 12px; border-radius: 14px;
+      font-size: 12px; font-weight: 700; color: var(--text-primary); border: 1px solid var(--border);
+    }
+
+    /* Experience */
+    .experience-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; }
+    .experience-card {
+      background: white; border-radius: 16px; padding: 32px; box-shadow: var(--shadow); transition: 0.25s; border: 1px solid var(--border);
+    }
+    .experience-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-3px); }
+    .experience-header { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
+    .experience-icon {
+      width: 56px; height: 56px; background: var(--gradient); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 28px; color: white; flex-shrink: 0;
+    }
+    .experience-card h3 { font-size: 22px; }
+    .subtitle-exp { color: var(--text-secondary); font-size: 13px; font-weight: 700; }
+    .experience-card p { color: var(--text-secondary); line-height: 1.7; margin-bottom: 12px; }
+    .experience-features { list-style: none; }
+    .experience-features li {
+      padding: 8px 0; color: var(--text-primary); display: flex; align-items: center; gap: 10px; font-size: 14px;
+    }
+    .experience-features li::before {
+      content: '✓'; width: 18px; height: 18px; background: var(--accent); color: white; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 10px; flex-shrink: 0;
+    }
+
+    /* Publications */
+    .publications-bg { background: var(--bg-secondary); }
+    .publications-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; }
+    .publication-card {
+      background: white; border-radius: 16px; padding: 26px; box-shadow: var(--shadow); transition: 0.25s; border-left: 4px solid var(--accent); border-right: 1px solid var(--border); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    }
+    .publication-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-3px); }
+    .publication-badge {
+      background: var(--gradient); color: white; padding: 6px 12px; border-radius: 20px; font-size: 11px; font-weight: 800; display: inline-block; margin-bottom: 12px;
+    }
+    .publication-card h3 { font-size: 20px; margin-bottom: 8px; }
+    .publication-meta { color: var(--text-secondary); font-size: 13px; margin-bottom: 12px; font-weight: 700; }
+    .publication-card p { color: var(--text-secondary); line-height: 1.7; margin-bottom: 14px; }
+    .publication-link { color: var(--accent); text-decoration: none; font-weight: 800; display: inline-flex; align-items: center; gap: 8px; }
+    .publication-link:hover { text-decoration: underline; }
+
+    /* Testimonials */
+    .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+    .testimonial-card {
+      background: white; border-radius: 16px; padding: 26px; box-shadow: var(--shadow); transition: 0.25s; border-top: 4px solid var(--accent);
+    }
+    .testimonial-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+    .rating { color: #f59e0b; font-size: 17px; margin-bottom: 12px; }
+    .quote-icon { font-size: 42px; color: var(--accent); opacity: 0.2; line-height: 1; margin-bottom: 12px; }
+    .testimonial-text { color: var(--text-secondary); font-size: 14px; line-height: 1.7; margin-bottom: 18px; font-style: italic; }
+    .testimonial-author { border-top: 1px dashed var(--border); padding-top: 12px; }
+    .author-info h4 { font-size: 15px; margin-bottom: 4px; color: var(--text-primary); font-weight: 800; }
+    .author-info p { color: var(--text-secondary); font-size: 13px; }
+
+    /* Skills */
+    .skills-bg { background: var(--bg-secondary); }
+    .skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; }
+    .skill-category { background: white; border-radius: 16px; padding: 26px; box-shadow: var(--shadow); border: 1px solid var(--border); }
+    .skill-category h3 { font-size: 20px; margin-bottom: 16px; color: var(--text-primary); display: flex; align-items: center; gap: 10px; }
+    .skill-category h3::before { content: ''; width: 4px; height: 22px; background: var(--gradient); border-radius: 2px; }
+    .skill-items { display: flex; flex-wrap: wrap; gap: 8px; }
+    .skill-tag {
+      background: var(--bg-secondary); padding: 8px 12px; border-radius: 10px; font-size: 13px; font-weight: 700;
+      color: var(--text-primary); border: 1px solid var(--border); transition: 0.2s;
+    }
+    .skill-tag:hover { border-color: var(--accent); transform: translateY(-2px); }
+
+    /* New: Web Products/Tools section */
+    .tools-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+    .tool-card {
+      background: white; border: 1px solid var(--border); border-radius: 16px; padding: 22px; box-shadow: var(--shadow); transition: 0.25s; position: relative; overflow: hidden;
+    }
+    .tool-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); border-color: #b6e6e4; }
+    .tool-badge {
+      position: absolute; top: 14px; right: 14px; font-size: 11px; font-weight: 800; color: var(--accent); background: #e8fffd; border: 1px solid #bbe8e6; padding: 4px 8px; border-radius: 999px;
+    }
+    .tool-icon {
+      width: 56px; height: 56px; background: var(--gradient); border-radius: 14px; color: white;
+      display: flex; align-items: center; justify-content: center; font-size: 28px; margin-bottom: 12px;
+    }
+    .tool-card h3 { font-size: 18px; margin-bottom: 6px; }
+    .tool-desc { color: var(--text-secondary); font-size: 14px; margin-bottom: 14px; }
+    .tool-link { display: inline-flex; align-items: center; gap: 8px; font-weight: 800; color: var(--accent); text-decoration: none; }
+    .tool-link:hover { text-decoration: underline; }
+
+    /* Contact */
+    .contact-cta {
+      background: var(--bg-accent); color: white; text-align: center; padding: 70px 32px; border-radius: 20px; position: relative; overflow: hidden;
+    }
+    .contact-cta::before {
+      content: ''; position: absolute; inset: 0;
+      background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="1" fill="rgba(255,255,255,0.05)"/></svg>');
+    }
+    .contact-cta-content { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; }
+    .contact-cta h2 { font-size: 36px; margin-bottom: 12px; }
+    .contact-cta p { font-size: 18px; margin-bottom: 28px; opacity: 0.9; }
+    .contact-info-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 40px; }
+    .contact-item { text-align: center; background: white; padding: 26px; border-radius: 16px; transition: 0.25s; border: 1px solid var(--border); }
+    .contact-item:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+    .contact-icon {
+      width: 56px; height: 56px; background: var(--gradient); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 26px; margin: 0 auto 10px; color: white;
+    }
+    .contact-item h3 { font-size: 16px; margin-bottom: 6px; color: var(--text-primary); }
+    .contact-item a { color: var(--accent); text-decoration: none; font-weight: 700; }
+    .contact-item a:hover { text-decoration: underline; }
+    .social-links { display: flex; gap: 12px; justify-content: center; margin-top: 12px; }
+    .social-link {
+      width: 42px; height: 42px; background: rgba(255, 255, 255, 0.1); border-radius: 10px;
+      display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; transition: 0.25s; font-size: 18px; border: 1px solid rgba(255,255,255,0.15);
+    }
+    .social-link:hover { background: white; color: var(--accent); transform: translateY(-2px); }
+
+    /* Footer */
+    footer { background: var(--bg-accent); color: white; padding: 30px 0; text-align: center; }
+    footer p { opacity: 0.8; }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .expertise-grid, .products-grid, .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
+      .experience-grid, .publications-grid, .skills-grid { grid-template-columns: 1fr; }
+      .hero-stats { grid-template-columns: repeat(2, 1fr); gap: 18px; }
+      .contact-info-grid { grid-template-columns: 1fr; }
+      .hero-grid { grid-template-columns: 1fr; gap: 22px; }
+      .hero-media { order: -1; }
+      .hero-photo-wrap { width: 100%; max-width: 420px; height: 420px; margin: 0 auto; }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        position: fixed; top: 64px; left: 0; right: 0; background: white; flex-direction: column;
+        padding: 16px; box-shadow: var(--shadow-lg); display: none;
+      }
+      .nav-links.active { display: flex; }
+      .menu-toggle { display: block; }
+
+      .hero h1 { font-size: 38px; }
+      .hero .subtitle { font-size: 18px; }
+      .hero-stats { grid-template-columns: 1fr; }
+      .section-title { font-size: 28px; }
+      .contact-cta h2 { font-size: 30px; }
+
+      .expertise-grid, .products-grid, .testimonials-grid, .tools-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-content">
+      <div class="logo">C. Sridhar</div>
+      <div class="nav-links" id="navLinks">
+        <a href="#about">About</a>
+        <a href="#expertise">Expertise</a>
+        <a href="#products">Products</a>
+        <a href="#experience">Experience</a>
+        <a href="#publications">Publications</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <button class="menu-toggle" id="menuToggle">☰</button>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-media">
+          <div class="hero-photo-wrap">
+            <div class="hero-photo">
+              <img src="https://i.postimg.cc/qMggyWFv/up.png" alt="Chinthaparthi Sridhar portrait" width="300">
+              <div class="photo-badge">👋 Hello! I’m Sridhar</div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="hero-content">
+          <div class="hero-badge">🎓 Professional Corporate Trainer</div>
+          <h1>Chinthaparthi Sridhar</h1>
+          <p class="subtitle">Python • Data Science • Data Analytics Trainer</p>
+          <p class="tagline">Empowering professionals and organizations with practical, industry-relevant training. I turn complex concepts into actionable, real-world skills.</p>
+
+          <div class="hero-ctas">
+            <a class="btn btn-primary" href="#products">Explore Products →</a>
+            <a class="btn btn-outline" href="#contact">Contact Me</a>
+          </div>
+
+          <div class="hero-stats">
+            <div class="stat-item">
+              <span class="stat-number">500+</span>
+              <span class="stat-label">Students Trained</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">50+</span>
+              <span class="stat-label">Training Batches</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">3+</span>
+              <span class="stat-label">Years Experience</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">4.9/5</span>
+              <span class="stat-label">Average Rating</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">Get to Know Me</div>
+        <h2 class="section-title">About Me</h2>
+      </div>
+
+      <div class="about-content">
+        <h3>Professional Summary</h3>
+        <p>
+          I'm a passionate and dedicated professional trainer specializing in Python programming, data science, and data analytics. Currently working as a corporate trainer, I help individuals and teams build strong technical foundations and advance their careers in the data-driven world.
+        </p>
+        <p>
+          With hands-on industry experience and a deep understanding of both theoretical concepts and practical applications, I design training programs that bridge the gap between learning and real-world implementation. My approach focuses on interactive learning, project-based exercises, and continuous mentorship.
+        </p>
+
+        <div class="philosophy-box">
+          <h4>🎯 Training Philosophy</h4>
+          <p style="margin-bottom: 0;">
+            "Learning by doing" is at the core of my teaching methodology. Every session includes hands-on projects, real-world case studies, and support to ensure students not only understand concepts but can apply them confidently.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Expertise -->
+  <section id="expertise">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">What I Teach</div>
+        <h2 class="section-title">Training Expertise</h2>
+        <p class="section-subtitle">Comprehensive training programs designed for real-world application</p>
+      </div>
+
+      <div class="expertise-grid">
+        <div class="expertise-card">
+          <div class="expertise-icon">🐍</div>
+          <h3>Python Programming</h3>
+          <p>From fundamentals to advanced concepts—Python for data science, automation, and development with practical projects.</p>
+          <div class="topics-list">
+            <span class="topic-tag">Core Python</span>
+            <span class="topic-tag">OOP</span>
+            <span class="topic-tag">Data Structures</span>
+            <span class="topic-tag">Pandas</span>
+            <span class="topic-tag">NumPy</span>
+            <span class="topic-tag">File Handling</span>
+          </div>
+        </div>
+
+        <div class="expertise-card">
+          <div class="expertise-icon">📊</div>
+          <h3>Data Science & ML</h3>
+          <p>Build predictive models and extract insights using industry-standard ML techniques and deep learning frameworks.</p>
+          <div class="topics-list">
+            <span class="topic-tag">Scikit-learn</span>
+            <span class="topic-tag">TensorFlow</span>
+            <span class="topic-tag">Statistics</span>
+            <span class="topic-tag">ML Algorithms</span>
+            <span class="topic-tag">Deep Learning</span>
+            <span class="topic-tag">NLP</span>
+          </div>
+        </div>
+
+        <div class="expertise-card">
+          <div class="expertise-icon">📈</div>
+          <h3>Data Analytics</h3>
+          <p>Transform raw data into actionable insights via visualization, analysis, and strategic reporting.</p>
+          <div class="topics-list">
+            <span class="topic-tag">Power BI</span>
+            <span class="topic-tag">SQL</span>
+            <span class="topic-tag">Excel</span>
+            <span class="topic-tag">Data Viz</span>
+            <span class="topic-tag">Dashboards</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- New: Products (Webpages/Tools) -->
+  <section id="products">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">My Webpages & Tools</div>
+        <h2 class="section-title">Products</h2>
+        <p class="section-subtitle">Quick-access tools I’ve built for learners and teams</p>
+      </div>
+
+      <div class="tools-grid">
+        <div class="tool-card">
+          <span class="tool-badge">Free</span>
+          <div class="tool-icon">🐙</div>
+          <h3>Git Cheat Sheet</h3>
+          <p class="tool-desc">All the essential Git commands and workflows on one clean page.</p>
+          <!-- TODO: replace href with your actual page link -->
+          <a class="tool-link" href="/gitcheatsheet" target="_blank" rel="noopener">Visit page →</a>
+        </div>
+
+        <div class="tool-card">
+          <span class="tool-badge">Free</span>
+          <div class="tool-icon">🐍</div>
+          <h3>Python Cheat Sheet</h3>
+          <p class="tool-desc">Handy reference for Python syntax, data structures, and common patterns.</p>
+          <!-- TODO: replace href with your actual page link -->
+          <a class="tool-link" href="/pythoncheatsheet" target="_blank" rel="noopener">Visit page →</a>
+        </div>
+
+        <div class="tool-card">
+          <span class="tool-badge">Interactive</span>
+          <div class="tool-icon">❓</div>
+          <h3>Quiz Tool</h3>
+          <p class="tool-desc">Test your knowledge with timed quizzes and instant feedback.</p>
+          <!-- TODO: replace href with your actual page link -->
+          <a class="tool-link" href="/quiz" target="_blank" rel="noopener">Open tool →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section id="experience">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">My Journey</div>
+        <h2 class="section-title">Training Experience</h2>
+        <p class="section-subtitle">Diverse training delivery across multiple formats and audiences</p>
+      </div>
+
+      <div class="experience-grid">
+        <div class="experience-card">
+          <div class="experience-header">
+            <div class="experience-icon">👨‍💼</div>
+            <div>
+              <h3>Corporate Training</h3>
+              <p class="subtitle-exp">On-site & Remote Training Programs</p>
+            </div>
+          </div>
+          <p>Delivered customized training programs for corporate teams, focusing on upskilling employees in Python, data science, and analytics.</p>
+          <ul class="experience-features">
+            <li>Trained 30+ corporate batches</li>
+            <li>Customized curriculum design</li>
+            <li>Industry-specific case studies</li>
+            <li>Post-training mentorship</li>
+          </ul>
+        </div>
+
+        <div class="experience-card">
+          <div class="experience-header">
+            <div class="experience-icon">🎓</div>
+            <div>
+              <h3>Bootcamp Training</h3>
+              <p class="subtitle-exp">Intensive Programs & Workshops</p>
+            </div>
+          </div>
+          <p>Conducted intensive bootcamps and workshops focusing on hands-on learning and rapid skill development in data technologies.</p>
+          <ul class="experience-features">
+            <li>Weekend & weekday batches</li>
+            <li>Project-based learning approach</li>
+            <li>Real-world datasets</li>
+            <li>Career guidance included</li>
+          </ul>
+        </div>
+
+        <div class="experience-card">
+          <div class="experience-header">
+            <div class="experience-icon">💻</div>
+            <div>
+              <h3>Online Training</h3>
+              <p class="subtitle-exp">Remote & Flexible Learning</p>
+            </div>
+          </div>
+          <p>Providing flexible online training sessions with interactive learning materials and live coding demonstrations.</p>
+          <ul class="experience-features">
+            <li>Live interactive sessions</li>
+            <li>Recorded lectures available</li>
+            <li>Virtual lab environment</li>
+            <li>24/7 doubt clearing support</li>
+          </ul>
+        </div>
+
+        <div class="experience-card">
+          <div class="experience-header">
+            <div class="experience-icon">🎯</div>
+            <div>
+              <h3>One-on-One Mentoring</h3>
+              <p class="subtitle-exp">Personalized Coaching</p>
+            </div>
+          </div>
+          <p>Individual mentorship for professionals seeking career transitions or specialized skill development in data science.</p>
+          <ul class="experience-features">
+            <li>Personalized learning paths</li>
+            <li>Portfolio development guidance</li>
+            <li>Interview preparation</li>
+            <li>Resume & LinkedIn optimization</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Publications -->
+  <section id="publications" class="publications-bg">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">Research & Writing</div>
+        <h2 class="section-title">Publications</h2>
+        <p class="section-subtitle">Research papers and publications in data science and AI</p>
+      </div>
+
+      <div class="publications-grid">
+        <div class="publication-card">
+          <span class="publication-badge">Creative Work</span>
+          <h3>The Hidden Admirer</h3>
+          <p class="publication-meta">by Chinthaparthi Sridhar • 2024</p>
+          <p>A captivating short fiction story exploring themes of connection and mystery. Demonstrates creative writing abilities alongside technical expertise.</p>
+          <a href="https://www.amazon.in/Hidden-Admirer-Secret-Gift-Love-ebook/dp/B0DBFJPK2P" class="publication-link" target="_blank" rel="noopener">View on Amazon →</a>
+        </div>
+
+        <div class="publication-card">
+          <span class="publication-badge">Creative Work</span>
+          <h3>Too Late to Thank Him</h3>
+          <p class="publication-meta">by Chinthaparthi Sridhar • 2024</p>
+          <p>A heartfelt story reflecting gratitude, missed moments, and the emotions that linger when words remain unspoken.</p>
+          <a href="https://www.amazon.in/Too-Late-Thank-Chinthaparthi-Sridhar-ebook/dp/B0F9WDHH71" class="publication-link" target="_blank" rel="noopener">View on Amazon →</a>
+        </div>
+
+        <div class="publication-card">
+          <span class="publication-badge">Research Paper</span>
+          <h3>Academic Project Nexus</h3>
+          <p class="publication-meta">IRJMETS • 2024</p>
+          <p>Comprehensive study on project management systems tailored for academic institutions.</p>
+          <a href="https://www.doi.org/10.56726/IRJMETS49907" class="publication-link" target="_blank" rel="noopener">Read Paper →</a>
+        </div>
+
+        <div class="publication-card">
+          <span class="publication-badge">Research Paper</span>
+          <h3>Vision to Text: Advanced Image Captioning with Transformers</h3>
+          <p class="publication-meta">IJNRD • 2024</p>
+          <p>Explores Transformer-based architectures for image-to-text generation with robust evaluation metrics.</p>
+          <a href="http://doi.one/10.1729/Journal.41517" class="publication-link" target="_blank" rel="noopener">Read Paper →</a>
+        </div>
+
+        <div class="publication-card">
+          <span class="publication-badge">Survey Paper</span>
+          <h3>The State of Generative AI: From VAEs to Transformers</h3>
+          <p class="publication-meta">JEITSM • 2024</p>
+          <p>Comprehensive survey of modern generative models with practical use-cases and comparative analysis.</p>
+          <a href="https://drive.google.com/file/d/15VoV1Enb3h2pm7uO33hpJIU-mn2TQtP6/view" class="publication-link" target="_blank" rel="noopener">Read Paper →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section id="testimonials">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">What Students Say</div>
+        <h2 class="section-title">Student Testimonials</h2>
+        <p class="section-subtitle">Feedback from students trained by Sridhar Sir</p>
+      </div>
+
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="rating">⭐⭐⭐⭐⭐</div>
+          <div class="quote-icon">"</div>
+          <p class="testimonial-text">Sridhar Sir simplifies complex concepts with real-world examples that make learning data science enjoyable.</p>
+          <div class="testimonial-author">
+            <div class="author-info">
+              <h4>Aishwarya Reddy</h4>
+              <p>Data Analyst</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="rating">⭐⭐⭐⭐⭐</div>
+          <div class="quote-icon">"</div>
+          <p class="testimonial-text">Best Python trainer ever! His feedback on assignments improved my coding confidence immensely.</p>
+          <div class="testimonial-author">
+            <div class="author-info">
+              <h4>Mohammed Khan</h4>
+              <p>Software Developer</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="rating">⭐⭐⭐⭐⭐</div>
+          <div class="quote-icon">"</div>
+          <p class="testimonial-text">Power BI sessions completely changed how I present insights—clear, practical, inspiring.</p>
+          <div class="testimonial-author">
+            <div class="author-info">
+              <h4>Neha Sharma</h4>
+              <p>Business Analyst</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="rating">⭐⭐⭐⭐⭐</div>
+          <div class="quote-icon">"</div>
+          <p class="testimonial-text">His mentorship during our hackathon was incredible. We won first prize!</p>
+          <div class="testimonial-author">
+            <div class="author-info">
+              <h4>Rahul Patel</h4>
+              <p>Computer Science Student</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="rating">⭐⭐⭐⭐⭐</div>
+          <div class="quote-icon">"</div>
+          <p class="testimonial-text">Corporate training was tailored perfectly to our team's skill levels and needs.</p>
+          <div class="testimonial-author">
+            <div class="author-info">
+              <h4>Priya Gupta</h4>
+              <p>HR Manager</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="rating">⭐⭐⭐⭐⭐</div>
+          <div class="quote-icon">"</div>
+          <p class="testimonial-text">Hands-on projects helped me land my first data scientist job quickly.</p>
+          <div class="testimonial-author">
+            <div class="author-info">
+              <h4>Vikram Kumar</h4>
+              <p>Data Scientist</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills" class="skills-bg">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">Technical Proficiency</div>
+        <h2 class="section-title">Skills & Tools</h2>
+        <p class="section-subtitle">Technologies and tools I teach and work with</p>
+      </div>
+
+      <div class="skills-grid">
+        <div class="skill-category">
+          <h3>Programming Languages</h3>
+          <div class="skill-items">
+            <span class="skill-tag">Python 3</span>
+            <span class="skill-tag">SQL</span>
+            <span class="skill-tag">JavaScript</span>
+            <span class="skill-tag">C</span>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <h3>Data Science & ML</h3>
+          <div class="skill-items">
+            <span class="skill-tag">Pandas</span>
+            <span class="skill-tag">NumPy</span>
+            <span class="skill-tag">Scikit-learn</span>
+            <span class="skill-tag">TensorFlow</span>
+            <span class="skill-tag">Keras</span>
+            <span class="skill-tag">PyTorch</span>
+            <span class="skill-tag">OpenCV</span>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <h3>Data Visualization</h3>
+          <div class="skill-items">
+            <span class="skill-tag">Power BI</span>
+            <span class="skill-tag">Tableau</span>
+            <span class="skill-tag">Matplotlib</span>
+            <span class="skill-tag">Seaborn</span>
+            <span class="skill-tag">Plotly</span>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <h3>Tools & Platforms</h3>
+          <div class="skill-items">
+            <span class="skill-tag">Jupyter Notebook</span>
+            <span class="skill-tag">Git & GitHub</span>
+            <span class="skill-tag">VSCode</span>
+            <span class="skill-tag">MySQL</span>
+            <span class="skill-tag">Excel</span>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <h3>Web Technologies</h3>
+          <div class="skill-items">
+            <span class="skill-tag">HTML5</span>
+            <span class="skill-tag">CSS3</span>
+            <span class="skill-tag">Bootstrap</span>
+            <span class="skill-tag">Responsive Design</span>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <h3>Training Tools</h3>
+          <div class="skill-items">
+            <span class="skill-tag">Google Colab</span>
+            <span class="skill-tag">Zoom</span>
+            <span class="skill-tag">MS Teams</span>
+            <span class="skill-tag">LMS Platforms</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <div class="container">
+      <div class="contact-cta">
+        <div class="contact-cta-content">
+          <h2>Let's Connect</h2>
+          <p>Interested in training programs, tools, or collaboration? Get in touch!</p>
+
+          <div class="social-links">
+            <a href="https://www.instagram.com/sridhar_chinthaparthi" class="social-link" target="_blank" aria-label="Instagram">📸</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-info-grid">
+        <div class="contact-item">
+          <div class="contact-icon">📧</div>
+          <h3>Email</h3>
+          <a href="mailto:sridhar.chinthaparthi@gmail.com">sridhar.chinthaparthi@gmail.com</a>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon">📱</div>
+          <h3>Phone</h3>
+          <a href="tel:+917032238926">+91 7032238926</a>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <h3>Location</h3>
+          <p style="color: var(--text-secondary); margin: 0;">Bangalore, Karnataka, India</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>© 2025 Chinthaparthi Sridhar. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
+    // Smooth scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          navLinks.classList.remove('active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
