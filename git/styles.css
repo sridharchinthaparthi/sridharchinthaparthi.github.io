@@ -320,9 +320,9 @@ body::before {
 
 /* Info Icon on Cards */
 .info-icon {
-    position: relative;
-    top: 6px;
-    left: 260px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
     font-size: 14px;
     background: #007bff;
     color: #fff;
@@ -812,5 +812,4 @@ body::before {
         page-break-inside: avoid;
     }
 }
-
 
