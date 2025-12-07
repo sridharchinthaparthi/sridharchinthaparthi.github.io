@@ -813,3 +813,20 @@ body::before {
     }
 }
 
+/* ---------- PRINT WATERMARK ONLY ---------- */
+@media print {
+    body::before {
+        content: "chinthaparthisridhar.in © 2025";
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(-35deg);
+        font-size: 60px;
+        color: rgba(0, 0, 0, 0.15);  /* light watermark */
+        font-weight: 700;
+        white-space: nowrap;
+        z-index: 9999;
+        pointer-events: none;
+    }
+}
+
